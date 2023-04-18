@@ -1,7 +1,6 @@
 import { classNames } from 'shared/lib/helpers/classNames';
 import cls from './Navbar.module.scss';
 import AppLink, { AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { ThemeSwitcher } from "widgets/ThemeSwitcher";
 
 interface NavbarProps {
 	className?: string;
@@ -13,8 +12,6 @@ export const Navbar = (
 	}: NavbarProps) => {
 	return (
 		<div className={ classNames(cls.navbar, {}, [className]) }>
-			<ThemeSwitcher />
-
 			<div className={ classNames(cls.linksWrapper) }>
 				<AppLink to={ '/' } theme={ AppLinkTheme.SECONDARY }>Main</AppLink>
 				<AppLink to={ '/about' } theme={ AppLinkTheme.SECONDARY }>About site</AppLink>
