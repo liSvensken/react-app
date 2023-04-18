@@ -1,4 +1,4 @@
-# Базовый проект для React приложения
+# Учебный проект по курсу Продвинутый Frontend. В production на React https://ulbitv.ru
 
 react 17 version
 
