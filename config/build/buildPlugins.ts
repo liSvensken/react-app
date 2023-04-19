@@ -1,13 +1,12 @@
-import HTMLWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import { BuildOptions } from './types/config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
 
-	const plugins = [
-		new HTMLWebpackPlugin({
+	return [
+		new HtmlWebpackPlugin({
 			template: paths.html,
 		}),
 		new webpack.ProgressPlugin(),
@@ -20,15 +19,4 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 	]
-
-	if (isDev) {
-		plugins.push(
-			new ReactRefreshWebpackPlugin()
-		)
-		plugins.push(
-			new webpack.HotModuleReplacementPlugin()
-		)
-	}
-
-	return plugins;
 }
