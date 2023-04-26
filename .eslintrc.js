@@ -41,6 +41,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'react/button-has-type': 'off',
     'no-mixed-spaces-and-tabs': 'off',
+    'react/no-array-index-key': 'off',
   },
   globals: {
     __IS_DEV__: true,

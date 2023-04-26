@@ -43,7 +43,7 @@ export const LoaderSpinner: FC<LoaderSpinnerProps> = (
       style={ getStylesWrapper }
     >
       {
-        loaderItems.map((index) => (
+        loaderItems.map((_, index) => (
           <div
             key={ index }
             className={ classNames(cls.loaderItem) }
