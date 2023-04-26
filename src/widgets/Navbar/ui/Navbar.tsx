@@ -11,10 +11,10 @@ export const Navbar = (
     className,
   }: NavbarProps,
 ) => (
-  <div className={classNames(cls.navbar, {}, [className])}>
-    <div className={classNames(cls.linksWrapper)}>
-      <AppLink to="/" theme={AppLinkTheme.SECONDARY}>Main</AppLink>
-      <AppLink to="/about" theme={AppLinkTheme.SECONDARY}>About site</AppLink>
+  <div className={ classNames(cls.navbar, {}, [className]) }>
+    <div className={ classNames(cls.linksWrapper) }>
+      <AppLink to="/" theme={ AppLinkTheme.SECONDARY }>Main</AppLink>
+      <AppLink to="/about" theme={ AppLinkTheme.SECONDARY }>About site</AppLink>
     </div>
   </div>
 );

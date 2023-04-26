@@ -21,14 +21,14 @@ export const Sidebar = (
 
   return (
     <div
-      className={classNames(cls.sidebar, { [cls.open]: isOpen }, [className])}
+      className={ classNames(cls.sidebar, { [cls.open]: isOpen }, [className]) }
     >
-      <button onClick={onToggle}>
+      <button onClick={ onToggle }>
         TOGGLE
       </button>
-      <div className={classNames(cls.switchers)}>
+      <div className={ classNames(cls.switchers) }>
         <ThemeSwitcher />
-        <LangSwitcher className={cls.lang} />
+        <LangSwitcher className={ cls.lang } />
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const ThemeProvider: FC = ({ children }) => {
   }), [theme]);
 
   return (
-    <ThemeContext.Provider value={defaultProps}>
+    <ThemeContext.Provider value={ defaultProps }>
       { children }
     </ThemeContext.Provider>
   );
