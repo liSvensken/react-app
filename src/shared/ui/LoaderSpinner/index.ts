@@ -1,3 +1,3 @@
-import LoaderSpinner from 'shared/ui/LoaderSpinner/ui/LoaderSpinner';
+import LoaderSpinner from './ui/LoaderSpinner';
 
 export { LoaderSpinner };

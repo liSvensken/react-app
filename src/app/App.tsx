@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import './styles/index.scss';
 import { UseTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib/helpers/classNames';
@@ -9,12 +9,6 @@ import { PageLoader } from 'widgets/PageLoader';
 
 const App = () => {
   const { theme } = UseTheme();
-
-  // useEffect(() => {
-  //   if (Math.random() < 0.5) {
-  //     throw new Error();
-  //   }
-  // });
 
   return (
     <div className={ classNames('app', {}, [theme]) }>
