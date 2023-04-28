@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'react-hooks', // Полезный плагин! помогает контролировать хуки
   ],
   rules: {
     'no-tabs': 0,
@@ -42,6 +43,10 @@ module.exports = {
     'react/button-has-type': 'off',
     'no-mixed-spaces-and-tabs': 'off',
     'react/no-array-index-key': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
   },
   globals: {
     __IS_DEV__: true,
