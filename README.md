@@ -1,4 +1,4 @@
-# Учебный проект по курсу Продвинутый Frontend. В production на React https://ulbitv.ru
+# Учебный проект по курсу Продвинутый Frontend. В production на React <a href="https://ulbitv.ru">Курс Улби</a>
 
 react 17 version
 
