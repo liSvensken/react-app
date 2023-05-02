@@ -6,18 +6,6 @@
   z-index: -1;
   color: var(--primary-color);
 
-  // потом исправить
-  &.dark {
-    --bg-color: #090949;
-    --primary-color: #04ff04;
-  }
-
-  // потом исправить
-  &.light {
-    --bg-color: #cecece;
-    --primary-color: #001f81;
-  }
-
   &.opened {
     pointer-events: auto;
     opacity: 1;
