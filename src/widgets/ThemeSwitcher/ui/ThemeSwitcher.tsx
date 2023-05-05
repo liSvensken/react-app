@@ -5,15 +5,7 @@ import LightIcon from 'shared/assets/icons/theme-light.svg';
 import Button, { ThemeButton } from 'shared/ui/Button/Button';
 import cls from './ThemeSwitcher.module.scss';
 
-interface ThemeSwitcherProps {
-	className?: string;
-}
-
-export const ThemeSwitcher = (
-  {
-    className,
-  }: ThemeSwitcherProps,
-) => {
+export const ThemeSwitcher = () => {
   const { theme, toggleTheme } = UseTheme();
 
   return (
