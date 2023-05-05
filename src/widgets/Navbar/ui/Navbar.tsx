@@ -1,8 +1,8 @@
 import { classNames } from 'shared/lib/helpers/classNames';
 import AppLink, { AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { Modal } from 'shared/ui/Modal';
 import React, { useCallback, useState } from 'react';
 import Button, { ThemeButton } from 'shared/ui/Button/Button';
+import { LoginModal } from 'features/AuthByUsername';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -33,12 +33,10 @@ export const Navbar = (
         >
           Войти
         </Button>
-        <Modal
+        <LoginModal
           isOpen={ isOpenAuthModal }
           onClose={ () => toggleAuthModal(false) }
-        >
-          Некоторый текст
-        </Modal>
+        />
       </div>
     </div>
   );
