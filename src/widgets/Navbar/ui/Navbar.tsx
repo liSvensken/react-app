@@ -3,6 +3,9 @@ import AppLink, { AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import React, { useCallback, useState } from 'react';
 import Button, { ThemeButton } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User/model/selectors/getUserAuthData';
+import { userActions } from 'entities/User';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -15,10 +18,16 @@ export const Navbar = (
   }: NavbarProps,
 ) => {
   const [isOpenAuthModal, setIsOpenAuthModal] = useState(false);
+  const authData = useSelector(getUserAuthData);
+  const dispatch = useDispatch();
 
   const toggleAuthModal = useCallback((isOpen: boolean) => {
     setIsOpenAuthModal(isOpen);
   }, []);
+
+  const onLogout = useCallback(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
 
   return (
     <div className={ classNames(cls.navbar, {}, [className]) }>

@@ -1,11 +1,3 @@
-import User from './ui/User';
-import { userReducer, userActions } from './model/slice/userSlice';
-import { UserSchema, UserInterface } from './model/types/user';
-
-export {
-  User,
-  userReducer,
-  userActions,
-  UserSchema,
-  UserInterface,
-};
+export { userReducer, userActions } from './model/slice/userSlice';
+export { getUserAuthData } from './model/selectors/getUserAuthData';
+export { UserSchema, User } from './model/types/user';
