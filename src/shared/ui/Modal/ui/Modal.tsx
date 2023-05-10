@@ -11,6 +11,7 @@ interface ModalProps {
 	children?: ReactNode;
 	isOpen?: boolean;
 	onClose?: () => void;
+  lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 200;
@@ -21,9 +22,11 @@ export const Modal: FC<ModalProps> = (
     children,
     isOpen,
     onClose,
+    lazy,
   },
 ) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const { theme } = useTheme();
 
@@ -49,6 +52,12 @@ export const Modal: FC<ModalProps> = (
 
   useEffect(() => {
     if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
       window.addEventListener('keydown', onKeyDown);
     }
 
@@ -62,6 +71,11 @@ export const Modal: FC<ModalProps> = (
     [cls.opened]: isOpen,
     [cls.isClosing]: isClosing,
   };
+
+  // не рендерить модалку, если стоит флаг ленивой загрузки она не открыта
+  if (lazy && !isMounted) {
+    return null;
+  }
 
   return (
     <Portal>
