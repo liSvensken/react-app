@@ -1,15 +1,18 @@
-import { FC, memo, useCallback } from 'react';
+import React, {
+  FC, FormEvent, memo, useCallback,
+} from 'react';
 import { classNames } from 'shared/lib/helpers/classNames';
 import Button from 'shared/ui/Button/Button';
 import Input from 'shared/ui/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
+import { Text, TextTheme } from 'shared/ui/Text';
 import { getLoginState } from '../../model/selectors/getLoginState';
 import { loginByUsername } from '../../model/services/loginByUsername';
 import { loginActions } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
-  className?: string;
+	className?: string;
 }
 
 export const LoginForm: FC<LoginFormProps> = memo((
@@ -18,7 +21,9 @@ export const LoginForm: FC<LoginFormProps> = memo((
   }: LoginFormProps,
 ) => {
   const dispatch = useDispatch();
-  const { username, password } = useSelector(getLoginState);
+  const {
+    username, password, error, isLoading,
+  } = useSelector(getLoginState);
 
   const onChangeUsername = useCallback((value: string) => {
     dispatch(loginActions.setUsername(value));
@@ -28,7 +33,9 @@ export const LoginForm: FC<LoginFormProps> = memo((
     dispatch(loginActions.setPassword(value));
   }, [dispatch]);
 
-  const onLoginSubmit = useCallback(() => {
+  const onLoginSubmit = useCallback((event: FormEvent) => {
+    event.preventDefault();
+    // @ts-ignore
     dispatch(loginByUsername({ username, password }));
   }, [dispatch, password, username]);
 
@@ -37,6 +44,13 @@ export const LoginForm: FC<LoginFormProps> = memo((
       className={ classNames(cls.loginForm, {}, [className]) }
       onSubmit={ onLoginSubmit }
     >
+      <Text title="Форма авторизации" />
+      { error && (
+        <Text
+          text="Вы ввели неверный логин или пароль"
+          theme={ TextTheme.ERROR }
+        />
+      )}
       <Input
         type="text"
         name="username"
@@ -57,6 +71,7 @@ export const LoginForm: FC<LoginFormProps> = memo((
       <Button
         className={ cls.loginBtn }
         type="submit"
+        disabled={ isLoading }
       >
         Войти
       </Button>
