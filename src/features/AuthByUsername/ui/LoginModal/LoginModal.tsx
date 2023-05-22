@@ -5,9 +5,9 @@ import LoginForm from '../LoginForm/LoginForm';
 import cls from './LoginModal.module.scss';
 
 interface LoginModalProps {
-  className?: string;
-  isOpen?: boolean;
-  onClose?: () => void;
+	className?: string;
+	isOpen?: boolean;
+	onClose?: () => void;
 }
 
 export const LoginModal: FC<LoginModalProps> = (
@@ -24,7 +24,7 @@ export const LoginModal: FC<LoginModalProps> = (
       onClose={ onClose }
       lazy
     >
-      <LoginForm />
+      <LoginForm onClose={ onClose } />
     </Modal>
   );
 };

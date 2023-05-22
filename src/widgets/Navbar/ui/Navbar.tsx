@@ -4,8 +4,7 @@ import React, { useCallback, useState } from 'react';
 import Button, { ThemeButton } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserAuthData } from 'entities/User/model/selectors/getUserAuthData';
-import { userActions } from 'entities/User';
+import { userActions, getUserAuthData } from 'entities/User';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -34,14 +33,26 @@ export const Navbar = (
       <div className={ classNames(cls.linksWrapper) }>
         <AppLink to="/" theme={ AppLinkTheme.SECONDARY }>Main</AppLink>
         <AppLink to="/about" theme={ AppLinkTheme.SECONDARY }>About site</AppLink>
+        {
+          authData?.id ? (
+            <Button
+              theme={ ThemeButton.OUTLINE }
+              onClick={ () => onLogout() }
+              className={ cls.btnAuth }
+            >
+              Выйти
+            </Button>
+          ) : (
+            <Button
+              theme={ ThemeButton.OUTLINE }
+              onClick={ () => toggleAuthModal(true) }
+              className={ cls.btnAuth }
+            >
+              Войти
+            </Button>
+          )
+        }
 
-        <Button
-          theme={ ThemeButton.OUTLINE }
-          onClick={ () => toggleAuthModal(true) }
-          className={ cls.btnAuth }
-        >
-          Войти
-        </Button>
         <LoginModal
           isOpen={ isOpenAuthModal }
           onClose={ () => toggleAuthModal(false) }

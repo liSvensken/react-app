@@ -1,11 +1,12 @@
 import React, {
-  FC, FormEvent, memo, useCallback,
+  FC, FormEvent, memo, useCallback, useEffect,
 } from 'react';
 import { classNames } from 'shared/lib/helpers/classNames';
 import Button from 'shared/ui/Button/Button';
 import Input from 'shared/ui/Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text';
+import { getUserAuthData } from 'entities/User';
 import { getLoginState } from '../../model/selectors/getLoginState';
 import { loginByUsername } from '../../model/services/loginByUsername';
 import { loginActions } from '../../model/slice/loginSlice';
@@ -13,17 +14,21 @@ import cls from './LoginForm.module.scss';
 
 interface LoginFormProps {
 	className?: string;
+  onClose?: () => void;
 }
 
 export const LoginForm: FC<LoginFormProps> = memo((
   {
     className,
+    onClose,
   }: LoginFormProps,
 ) => {
   const dispatch = useDispatch();
   const {
     username, password, error, isLoading,
   } = useSelector(getLoginState);
+
+  const user = useSelector(getUserAuthData);
 
   const onChangeUsername = useCallback((value: string) => {
     dispatch(loginActions.setUsername(value));
@@ -38,6 +43,10 @@ export const LoginForm: FC<LoginFormProps> = memo((
     // @ts-ignore
     dispatch(loginByUsername({ username, password }));
   }, [dispatch, password, username]);
+
+  useEffect(() => {
+    if (user) onClose();
+  }, [onClose, user]);
 
   return (
     <form
